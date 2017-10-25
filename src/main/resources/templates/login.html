@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+</head>
+<body>
+    <div th:if="${param.error}">
+        <span th:value="无效的用户名或密码"></span>
+    </div>
+    <div th:if="${param.logout}">
+        <span th:value="您已经退出"></span>
+    </div>
+    <div th:if="${#httpServletRequest.remoteUser!=null}">
+        <input th:value="${#httpServletRequest.remoteUser}" type="hidden"/>
+    </div>
+    <form th:action="@{/public/login}" id="loginForm" method="post" onsubmit="return checkImgCode();">
+        <input type="text" name="username" placeholder="用户名"/><br/>
+        <input type="password" name="password" placeholder="密码"/><br/>
+        <input type="text" id="checkCode" name="checkCode" placeholder="验证码"/><img id="imageCode" th:src="@{/public/imageCode}" alt="验证码"/><br/>
+        <input type="checkbox" name="remember-me"/>记住我<br/>
+        <input type="submit" value="登录"/>
+    </form>
+</body>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#imageCode").click(function () {
+            $(this).attr("src", "/public/imageCode");
+        });
+    });
+    function checkImgCode() {
+        var code = $("#checkCode").val();
+        if(!code){
+            alert("请填写验证码");
+            return false;
+        }
+        var isSuc = false;
+        $.ajax({
+            type: "get",
+            url: "/public/checkCode/" + code,
+            async: false,
+            success: function (data) {
+                if(data.success){
+                    isSuc = true;
+                }else {
+                    alert(data.msg);
+                    $("#imageCode").click();
+                }
+            },
+            error: function (e) {
+                alert(e.toString());
+            }
+        });
+        return isSuc;
+    }
+</script>
+</html>
