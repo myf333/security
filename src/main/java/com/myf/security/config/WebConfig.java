@@ -23,13 +23,13 @@ public class WebConfig {
         //边框厚度  合法值  大于0 的整数
         properties.setProperty("kaptcha.border.thickness","1");
         //图片宽度
-        properties.setProperty("kaptcha.image.width","100");
+        properties.setProperty("kaptcha.image.width","125");
         //图片高度
         properties.setProperty("kaptcha.image.height","50");
         //验证码长度
         properties.setProperty("kaptcha.textproducer.char.length","5");
         //文本集合  验证码的值从此集合中获取
-        properties.setProperty("kaptcha.textproducer.char.string","0123456789abcdefghijklmnopqrstuvwxyz");
+        properties.setProperty("kaptcha.textproducer.char.string","023456789abcdefghijkmnopqrstuvwxyz");
         //字体大小
         properties.setProperty("kaptcha.textproducer.font.size","40");
         //字体颜色    合法值 r,g,b  black white  blue

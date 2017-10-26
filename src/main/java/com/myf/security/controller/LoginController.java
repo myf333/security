@@ -65,7 +65,7 @@ public class LoginController {
         if(validCode==null||validDate==null){
             return new ValidCode(false,"验证码已经失效");
         }
-        if(code==null||!code.equals(validCode)){
+        if(code==null||!code.toLowerCase().equals(validCode.toLowerCase())){
             return new ValidCode(false,"验证码填写错误");
         }
         Date now = new Date();
