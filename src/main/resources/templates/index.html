@@ -4,7 +4,7 @@
     <title>首页</title>
 </head>
 <body>
-    欢迎您:<label th:text="#{user.name}"></label>
+    欢迎您:<label th:text="${user.name}"></label>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="退出"/>
     </form>

@@ -24,12 +24,12 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SecurityApplicationTests {
-//	@Autowired
-//	UserRepository userRepository;
-//	@Autowired
-//	DepartmentRepository departmentRepository;
-//	@Autowired
-//	RoleRepository roleRepository;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	DepartmentRepository departmentRepository;
+	@Autowired
+	RoleRepository roleRepository;
 //
 //	@Test
 //	public void testInit() {
@@ -57,11 +57,11 @@ public class SecurityApplicationTests {
 //		Assert.assertNotNull(user.getId());
 //	}
 //
-//	@Test
-//	public void testDatabase(){
-//		Pageable pageable = new PageRequest(0,10,new Sort(Sort.Direction.ASC,"id"));
-//		Page<User> users = userRepository.findAll(pageable);
-//		Assert.assertNotNull(users);
-//	}
+	@Test
+	public void testDatabase(){
+		Pageable pageable = new PageRequest(0,10,new Sort(Sort.Direction.ASC,"id"));
+		Page<User> users = userRepository.findAll(pageable);
+		Assert.assertNotNull(users);
+	}
 
 }

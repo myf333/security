@@ -33,6 +33,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.security.oauth:spring-security-oauth2')
+	compile('org.springframework.security:spring-security-jwt')
 	runtime('mysql:mysql-connector-java')
 	compile 'com.alibaba:druid:1.1.1'
     testCompile('org.springframework.boot:spring-boot-starter-test')

@@ -1,12 +1,15 @@
 package com.myf.security.config;
 
 import com.myf.security.CustomAccessDecisionManager;
+import com.myf.security.CustomFilterSecurityInterceptor;
 import com.myf.security.CustomSecurityMetadataSource;
 import com.myf.security.LoginSuccessHandler;
 import com.myf.security.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -24,6 +27,7 @@ import javax.sql.DataSource;
  * Created by myf on 2017/10/20.
  */
 @Configuration
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private DataSource dataSource;
     private CustomUserDetailService userDetailService;
@@ -44,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
+        http
+                .formLogin()
                 .loginPage("/public/login")
                 .permitAll()
                 .successHandler(loginSuccessHandler())
@@ -69,7 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .rememberMe()
                     .tokenValiditySeconds(1209600)
                     .tokenRepository(tokenRepository());
-        http.addFilterAt(filterSecurityInterceptor(),FilterSecurityInterceptor.class);
+        http.addFilterAfter(filterSecurityInterceptor(),FilterSecurityInterceptor.class);
     }
 
     @Override
@@ -79,8 +84,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     }
 
     @Bean
-    public FilterSecurityInterceptor filterSecurityInterceptor(){
-        FilterSecurityInterceptor interceptor = new FilterSecurityInterceptor();
+    public CustomFilterSecurityInterceptor filterSecurityInterceptor(){
+        CustomFilterSecurityInterceptor interceptor = new CustomFilterSecurityInterceptor();
         interceptor.setAuthenticationManager(authenticationManager);
         interceptor.setSecurityMetadataSource(securityMetadataSource());
         interceptor.setAccessDecisionManager(accessDecisionManager());

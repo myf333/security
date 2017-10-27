@@ -20,7 +20,7 @@ public class IndexController {
         Authentication auth =
                 SecurityContextHolder.getContext().getAuthentication();
         SecurityUser user =  (SecurityUser) auth.getPrincipal();
-        model.addAttribute(user);
+        model.addAttribute("user",user);
         return  "index";
     }
 }
