@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>错误</title>
+</head>
+<body>
+<p th:text="${'错误发生的时间:'+timestamp}">错误发生的时间</p>
+<p th:text="${'HTTP状态码:'+status}">HTTP状态码</p>
+<p th:text="${'错误原因:'+error}">错误原因</p>
+<p th:text="${'异常类名:'+exception}">异常类名</p>
+<p th:text="${'异常消息（如果这个错误是由异常引起的）:'+message}">异常消息（如果这个错误是由异常引起的）</p>
+<p th:text="${'BindingResult异常里的各种错误（如果这个错误是由异常引起的）:'+errors}">BindingResult异常里的各种错误（如果这个错误是由异常引起的）</p>
+<p th:text="${'错误发生时请求的URL路径:'+path}">错误发生时请求的URL路径</p>
+<p th:text="${'异常跟踪信息（如果这个错误是由异常引起的）:'+trace}">异常跟踪信息（如果这个错误是由异常引起的）</p>
+</body>
+</html>

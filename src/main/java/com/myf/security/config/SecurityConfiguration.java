@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .loginPage("/public/login")
                 .permitAll()
                 .successHandler(loginSuccessHandler())
-                .defaultSuccessUrl("/security/index",true)
+                .defaultSuccessUrl("/security/index",false)
             .and()
                 .authorizeRequests()
                     .antMatchers("/images/**","/checkcode","/script/**","/style/**","/public/**").permitAll()

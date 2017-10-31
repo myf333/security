@@ -16,8 +16,8 @@ public class IndexController {
         return user;
     }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "redirect;/#/";
-    }
+//    @RequestMapping("/login")
+//    public String login(){
+//        return "redirect;/#/";
+//    }
 }
